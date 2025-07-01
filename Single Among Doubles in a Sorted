@@ -1,0 +1,77 @@
+//1.brute force
+class Solution {
+  public:
+    int findOnce(vector<int>& arr) {
+        // code here.
+        if(arr.size()==1)
+            return arr[0];
+        for(int i=0;i<arr.size()-1;i++)
+        {
+            if(arr[i]!=arr[i-1] && arr[i]!=arr[i+1])//or  if(arr[i]!=arr[i+1] && i%2==0)
+            {
+                return arr[i];
+            }
+        }
+        return arr[arr.size()-1];
+    }
+};
+
+//2.binary search
+class Solution {
+  public:
+    int findOnce(vector<int>& a) {
+        // code here.
+       int i=0,j=a.size()-2;
+        
+       while(i<=j)
+       {
+           int mid=(i+j)/2;
+           if(mid%2==0 )
+           {
+               if(a[mid]==a[mid+1])
+                    i=mid+1;
+                else
+                    j=mid-1;
+           }
+            if(mid%2!=0)
+           {
+               if(a[mid]==a[mid-1])
+                    i=mid+1;
+                else
+                  j=mid-1;
+           }
+       }
+       return a[i];
+      
+    }
+};
+
+//did by myself
+class Solution {
+  public:
+    int findOnce(vector<int>& a) {
+        // code here.
+       int i=0,j=a.size()-2;
+       while(i<=j)
+       {
+           int mid=(i+j)/2;
+           if(a[mid]==a[mid+1] )
+           {
+               if(mid%2==0)
+                    i=mid+1;
+                else
+                    j=mid;
+           }
+           else if(a[mid]==a[mid-1])
+           {
+               if(mid%2!=0)
+                    i=mid+1;
+                else
+                    j=mid;
+           }
+            else
+                return a[mid];
+       }
+       return a[a.size()-1];
+    }
+};
