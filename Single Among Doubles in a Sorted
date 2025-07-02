@@ -1,4 +1,4 @@
-https://www.geeksforgeeks.org/problems/first-and-last-occurrences-of-x3116/1
+ https://www.geeksforgeeks.org/problems/find-the-element-that-appears-once-in-sorted-array0624/1
 //1.brute force
 class Solution {
   public:
