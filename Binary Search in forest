@@ -1,0 +1,35 @@
+https://www.geeksforgeeks.org/problems/binary-search-in-forest--141631/1
+//UNDERSTAND THIS PRBLM CLEARY AND DRY RUN IT THEN ALL AP WILL BE EASY
+class Solution {
+  public:
+  int check(int H,int tree[],int n)
+  {
+      int wood=0;
+      for(int i=0;i<n;i++)
+      {
+          if(tree[i]>H)
+            wood=wood+tree[i]-H;
+      }
+      return wood;
+  }
+    int find_height(int tree[], int n, int k) {
+        // code here
+        int l=0,h=tree[0];
+        for(int i=0;i<n;i++)
+        {
+            h=max(tree[i],h);
+        }
+        while(l<=h)
+        {
+            int mid=(l+h)/2;
+            int wood=check(mid,tree,n);
+            if(wood==k)
+                return mid;
+            else if(wood<k)
+                h=mid-1;
+            else
+                l=mid+1;
+        }
+       return -1; 
+    }
+};
