@@ -1,0 +1,43 @@
+https://www.geeksforgeeks.org/problems/the-painters-partition-problem1535/1
+class Solution {
+  public:
+  int numofpainters(vector<int>arr,int mid)
+  {
+      int painters=1,sum=0;
+      for(int i=0;i<arr.size();i++)
+      {
+          if(sum+arr[i]<=mid)
+            sum=sum+arr[i];
+        else
+            {
+                painters++;
+                sum=arr[i];
+            }
+      }
+      return painters;
+  }
+    int minTime(vector<int>& arr, int k) {
+        // code here
+        int l=arr[0],h=0,sum=0,ans=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            l=max(arr[i],l);
+            sum=sum+arr[i];
+        }
+        h=sum;
+        while(l<=h)
+        {
+            int mid=(l+h)/2;
+            int painters=numofpainters(arr,mid);
+            if(painters>k)
+                l=mid+1;
+            else
+            {
+                ans=mid;
+                h=mid-1;
+            }
+        }
+        return ans;//return l;
+       // return minimum time
+    }
+};
