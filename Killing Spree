@@ -1,0 +1,41 @@
+https://www.geeksforgeeks.org/problems/killing-spree3020/0
+1.brute force
+class Solution {
+  public:
+    long long int killinSpree(long long int n) {
+        long long  int i,j,sum=0,ans=0;
+        for(int i=0;i<=sqrt(n);i++)
+        {
+            sum=(i*(i+1)*(2*i+1))/6;
+            if(sum<=n)
+               {
+                   ans=i;
+               }
+              else
+              {
+                  break;
+              }
+        }
+        return ans;
+    }
+};
+//2.optimal
+class Solution {
+  public:
+    long long int killinSpree(long long int n) {
+        long long  int i=1,ans = 0,sum,mid;
+        long long int j=sqrt(n);
+        while(i<=j){
+            mid=i+((j-i)/2);
+            sum=((mid)*(mid+1)*(2*mid+1))/6;
+            if(sum>n){
+                j=mid-1;
+            }
+            else{
+               ans = mid;
+                i=mid+1;
+            }
+        }
+        return ans;
+    }
+};
